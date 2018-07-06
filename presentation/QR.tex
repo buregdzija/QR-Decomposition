@@ -1,0 +1,164 @@
+\documentclass[serbian]{beamer}
+
+\usepackage{babel}
+\mode<presentation>
+{
+  \usetheme{Warsaw}      % or try Boadilla, Rochester, ...
+  \usecolortheme{beaver} % or try beaver, dove, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+  \setbeamercolor{item}{fg=red}
+} 
+
+\usepackage[style=numeric]{biblatex}
+\addbibresource{QR.bib}
+\setbeamertemplate{bibliography item}[triangle]
+
+% This is for slide numbering
+\setbeamertemplate{sidebar right}{}
+\setbeamertemplate{footline}{%
+	\hfill\usebeamertemplate***{navigation symbols}
+	\large\insertframenumber{}/\inserttotalframenumber\hspace{0.5cm}\vspace{0.2cm}
+}
+
+\usepackage{listings}
+\lstset{
+	basicstyle=\ttfamily\small,
+	columns=fullflexible,
+	keepspaces=true,
+	showstringspaces=false,
+	escapechar=\%,
+	tabsize=4
+}
+
+\usepackage{amsmath}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+
+\title[QR dekompozicija]{QR dekompozicija}
+\author{Anja Bukurov}
+\institute{Matematički fakultet, \\ Univerzitet u Beogradu}
+\date{\today.}
+
+\begin{document}
+
+\begin{frame}
+  	\titlepage
+\end{frame}
+
+\begin{frame}{Sadržaj}
+  	\tableofcontents
+\end{frame}
+
+\section{Uvod}
+
+\begin{frame}{Uvod}
+
+	Neka je $A$ matrica dimenzija $m\times n$ ($m > n$) i ranga $n$.
+	\\ ~
+	\\
+	Matrica $A$ može se razložiti na proizvod
+	$$A = QR$$
+	gde je $Q$ ortogonalna matrica dimenzija $m \times n$, a $R$ je gornjetrougaouna matrica dimenzija $n \times n$.
+	
+\end{frame}
+
+\section{Algoritmi}
+
+\subsection{Klasičan Šmitov algoritam}
+\begin{frame}{Klasičan Šmitov algoritam}
+
+\begin{itemize}
+	\item Algoritam se sastoji iz $n$ koraka
+	\item U svakom koraku izračunata je jedna kolona matrice $Q$
+	\item Posmatrajmo $k$-ti korak:
+	\begin{itemize}
+		\item Do sad su izračunate kolone $cQ_1 \ldots cQ_{k-1}$
+		\item Prvo računamo $k$-tu kolonu matrice $R$ 
+		$$R_{ik} = cQ_i^TcA_k$$
+		\item Formiramo vektor $b_k = cA_k − \sum_{i=0}^{k-1}R_{ik}cQ_i$ koji je ortognalan na prethodno izračunate kolone $cQ_1 \ldots cQ_{k-1}$
+		\item Ostaje još da se vektor normira i dobili smo $k$-tu kolonu.
+	\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Klasičan Šmitov algoritam}
+	
+	\begin{itemize}
+		\item Matrica $Q$, koja se dobija ovim postupkom, nije ortogonalna i zbog toga je nestabilan
+		\item Međutim, proizvod matrica $Q$ i $R$ savršeno se poklapa sa polaznom matricom $A$
+		\item 
+	\end{itemize}
+	
+\end{frame}
+
+\subsection{Modifikacija Šmitovog algoritma}
+\begin{frame}{Modifikacija Šmitovog algoritma}
+
+	\begin{itemize}
+		\item Modifikacija se oslanja na vezu $A = QR$ u malo drugačijem obliku
+		\item Zapisujemo proizvod kao sumu matrica ranga 1:
+		
+		$$A = \sum_{i=1}^{n} cQ_irR_i^T $$
+		
+		\item Pre nego što izračunamo matricu $Q$, računamo vrednosti matrice $R$ na glavnoj dijagonali kao normu $k$-te kolone matrice $A$	
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Modifikacija Šmitovog algoritma}
+
+	\begin{itemize}
+		\item $k$-tu kolonu matrice $Q$ dobijamo normiranjem $k$-te kolone matrice $A$ odnosno deljenjem elemenata $k$-te kolone $k$-tim elementom dijagonale matrice $R$
+		\item Konačnu vrednost $k$-te kolone dobijamo formulom
+		$$cQ_k = cQ_{k-1} - cQ_{k-1}rR_k^T$$	
+	\end{itemize}
+\end{frame}
+
+\subsection{Reortogonalizacija}
+\begin{frame}{Reortogonalizacija}
+
+\begin{itemize}
+	\item Problem klasičnog Šmitovog algoritma jeste u računanju vektora $b$
+	\item Ukoliko je norma vektora $b$ mnogo manja od norme $k$-te kolone matrice $A$ doći će do poništavanja
+	
+	\item Ideja je da se polazna matrica $A$ ortogonalizuje sve dok norme matrica iz susednih koraka ne postanu dovoljno bliske
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}
+
+\vspace*{3em}
+
+{\Large Hvala na pa\v znji!} 
+
+\vspace*{1em}
+
+Pitanja?
+
+\end{frame}
+
+\section{Dodatak}
+
+\begin{frame}{Dodatak}
+
+\begin{flushleft}
+	{\Large Literatura}
+\end{flushleft}
+
+\printbibliography
+
+\begin{flushleft}
+	{\Large Repozitorijum}
+\end{flushleft}
+
+\href{https://github.com/djinx/QR-Decomposition}{https://github.com/djinx/QR-Decomposition}
+
+\end{frame}
+
+\end{document}
