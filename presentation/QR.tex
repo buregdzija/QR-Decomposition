@@ -103,7 +103,7 @@
 		
 		$$A = \sum_{i=1}^{n} cQ_irR_i^T $$
 		
-		\item Pre nego što izračunamo matricu $Q$, računamo vrednosti matrice $R$ na glavnoj dijagonali kao normu $k$-te kolone matrice $A$	
+		\item Pre nego što izračunamo kolonu matrice $Q$, računamo vrednosti matrice $R$ na glavnoj dijagonali kao normu $k$-te kolone matrice $A$	
 	\end{itemize}
 
 \end{frame}
@@ -111,9 +111,9 @@
 \begin{frame}{Modifikacija Šmitovog algoritma}
 
 	\begin{itemize}
-		\item $k$-tu kolonu matrice $Q$ dobijamo normiranjem $k$-te kolone matrice $A$ odnosno deljenjem elemenata $k$-te kolone $k$-tim elementom dijagonale matrice $R$
-		\item Konačnu vrednost $k$-te kolone dobijamo formulom
-		$$cQ_k = cQ_{k-1} - cQ_{k-1}rR_k^T$$	
+		\item $k$-tu kolonu matrice $Q$ računamo po formuli
+		$$cQ_k = cQ_{k-1} - cQ_{k-1}rR_k^T$$
+		\item Konačnu vrednost $k$-te kolone dobijamo njenim normiranjem odnosno deljenjem elemenata $k$-te kolone $k$-tim elementom dijagonale matrice $R$	
 	\end{itemize}
 \end{frame}
 
