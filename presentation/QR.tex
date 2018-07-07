@@ -54,7 +54,7 @@
 
 \begin{frame}{Uvod}
 
-	Neka je $A$ matrica dimenzija $m\times n$ ($m > n$) i ranga $n$.
+	Neka je $A$ matrica dimenzija $m\times n$ ($m \geq n$).
 	\\ ~
 	\\
 	Matrica $A$ može se razložiti na proizvod
@@ -87,9 +87,8 @@
 \begin{frame}{Klasičan Šmitov algoritam}
 	
 	\begin{itemize}
+		\item Proizvod dobijenih matrica, $Q$ i $R$, savršeno se poklapa sa polaznom matricom $A$
 		\item Matrica $Q$, koja se dobija ovim postupkom, nije ortogonalna i zbog toga je nestabilan
-		\item Međutim, proizvod matrica $Q$ i $R$ savršeno se poklapa sa polaznom matricom $A$
-		\item 
 	\end{itemize}
 	
 \end{frame}
@@ -111,9 +110,9 @@
 \begin{frame}{Modifikacija Šmitovog algoritma}
 
 	\begin{itemize}
-		\item $k$-tu kolonu matrice $Q$ računamo po formuli
-		$$cQ_k = cQ_{k-1} - cQ_{k-1}rR_k^T$$
-		\item Konačnu vrednost $k$-te kolone dobijamo njenim normiranjem odnosno deljenjem elemenata $k$-te kolone $k$-tim elementom dijagonale matrice $R$	
+		\item  $k$-tu kolonu marice $Q$ normiramo odnosno delimo je $k$-tim elementom glavne dijagonale matrice $R$
+		\item Konačnu vrednost $k$-te kolone matrice $Q$ računamo po formuli
+		$$cQ_k = cQ_{k-1} - cQ_{k-1}rR_k^T$$	
 	\end{itemize}
 \end{frame}
 
@@ -147,11 +146,6 @@ Pitanja?
 
 \begin{frame}{Dodatak}
 
-\begin{flushleft}
-	{\Large Literatura}
-\end{flushleft}
-
-\printbibliography
 
 \begin{flushleft}
 	{\Large Repozitorijum}
